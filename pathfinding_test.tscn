@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmpta70g0xxmd"]
+
+[ext_resource type="PackedScene" uid="uid://b6bbnuudc2hd8" path="res://assets/Level 1.blend" id="1_jcjpg"]
+[ext_resource type="Script" uid="uid://berjydujpu18a" path="res://player.gd" id="2_qd8n6"]
+
+[sub_resource type="Environment" id="Environment_qd8n6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jcjpg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qd8n6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qd8n6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nnco5"]
+
+[node name="pathfinding_test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qd8n6")
+
+[node name="Level 1" parent="." instance=ExtResource("1_jcjpg")]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.922342, 1, -0.23540688)
+collision_mask = 2
+script = ExtResource("2_qd8n6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_jcjpg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_qd8n6")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+
+[node name="Enemy" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.401519, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
+mesh = SubResource("CapsuleMesh_qd8n6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+shape = SubResource("CapsuleShape3D_nnco5")

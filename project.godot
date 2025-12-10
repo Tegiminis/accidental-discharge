@@ -10,6 +10,7 @@ config_version=5
 
 [application]
 
+<<<<<<< HEAD
 config/name="7dfps"
 run/main_scene="uid://bmpta70g0xxmd"
 config/features=PackedStringArray("4.5", "GL Compatibility")
@@ -42,3 +43,8 @@ move_backward={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+=======
+config/name="Accidental Discharge"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+>>>>>>> e22c98a (init)

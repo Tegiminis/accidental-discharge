@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://wmvmw7104fgu"]
 
 [ext_resource type="Script" uid="uid://cbccjiy78fpmw" path="res://objects/weapon.gd" id="1_ksv7g"]
-[ext_resource type="PackedScene" uid="uid://bqwbt3o2bgrcn" path="res://objects/on-hit.tscn" id="2_6dv0v"]
+[ext_resource type="PackedScene" uid="uid://bqwbt3o2bgrcn" path="res://objects/discharge.tscn" id="2_6dv0v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7ayu"]
 albedo_color = Color(0.27451, 1, 1, 1)

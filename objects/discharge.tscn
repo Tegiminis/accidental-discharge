@@ -15,7 +15,7 @@ points = PackedVector3Array(1.8692, 2.3656, 0.53806, -1.834, 2.13823, -0.265384,
 
 [node name="Discharge" type="Area3D"]
 collision_layer = 16
-collision_mask = 7
+collision_mask = 6
 script = ExtResource("1_wmbvm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

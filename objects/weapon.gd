@@ -2,6 +2,7 @@ extends RigidBody3D
 class_name Weapon
 
 @export var on_hit : PackedScene
+@export var damage : int = 5
 
 func _ready() -> void:
 	pass
@@ -16,4 +17,5 @@ func _physics_process(delta: float) -> void:
 		get_tree().get_root().add_child(discharge)
 		discharge.position = pos
 		discharge.look_at(to_global(norm))
+		discharge.damage = damage
 		queue_free()

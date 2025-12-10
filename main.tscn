@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vbhnu0dupkfo"]
+[gd_scene load_steps=9 format=3 uid="uid://vbhnu0dupkfo"]
 
 [ext_resource type="PackedScene" uid="uid://bgqffqcrj76oa" path="res://objects/player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://q2tw1cxc0enj" path="res://components/health/component_health.gd" id="2_0xm2m"]
@@ -25,6 +25,8 @@ size = Vector3(20, 20, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h2yge"]
 points = PackedVector3Array(10, 10, 0.5, 10, 10, -0.5, -10, 10, 0.5, 10, -10, 0.5, 10, -10, -0.5, -10, 10, -0.5, -10, -10, 0.5, -10, -10, -0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
 
 [node name="Main" type="Node3D"]
 
@@ -56,3 +58,11 @@ transform = Transform3D(1, 0, 0, 0, 0.920743, 0.390169, 0, -0.390169, 0.920743, 
 light_energy = 9.404
 spot_range = 29.0888
 spot_angle = 29.9303
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79555, -6.68288)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_0xm2m")

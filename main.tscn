@@ -1,24 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://vbhnu0dupkfo"]
+[gd_scene load_steps=8 format=3 uid="uid://vbhnu0dupkfo"]
 
 [ext_resource type="PackedScene" uid="uid://bgqffqcrj76oa" path="res://objects/player.tscn" id="1_ig7tw"]
-[ext_resource type="Resource" uid="uid://byrpoi2rlxbyj" path="res://objects/player_health.tres" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://q2tw1cxc0enj" path="res://components/health/component_health.gd" id="2_0xm2m"]
+
+[sub_resource type="Resource" id="Resource_h2yge"]
+resource_local_to_scene = true
+script = ExtResource("2_0xm2m")
+health_max = 100
+armor_max = 20
+resistance = 50
+super_armor = true
+invulnerable = false
+killable = true
+crit_mult = 2.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
-size = Vector3(10, 0.2, 10)
+size = Vector3(40, 0.2, 40)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h2yge"]
-data = PackedVector3Array(-5, 0.1, 5, 5, 0.1, 5, -5, -0.1, 5, 5, 0.1, 5, 5, -0.1, 5, -5, -0.1, 5, 5, 0.1, -5, -5, 0.1, -5, 5, -0.1, -5, -5, 0.1, -5, -5, -0.1, -5, 5, -0.1, -5, 5, 0.1, 5, 5, 0.1, -5, 5, -0.1, 5, 5, 0.1, -5, 5, -0.1, -5, 5, -0.1, 5, -5, 0.1, -5, -5, 0.1, 5, -5, -0.1, -5, -5, 0.1, 5, -5, -0.1, 5, -5, -0.1, -5, 5, 0.1, 5, -5, 0.1, 5, 5, 0.1, -5, -5, 0.1, 5, -5, 0.1, -5, 5, 0.1, -5, -5, -0.1, 5, 5, -0.1, 5, -5, -0.1, -5, 5, -0.1, 5, 5, -0.1, -5, -5, -0.1, -5)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0xm2m"]
+points = PackedVector3Array(-20, -0.1, -20, -20, 0.1, -20, 20, -0.1, -20, -20, -0.1, 20, -20, 0.1, 20, 20, 0.1, -20, 20, -0.1, 20, 20, 0.1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(20, 20, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h2yge"]
+points = PackedVector3Array(10, 10, 0.5, 10, 10, -0.5, -10, 10, 0.5, 10, -10, 0.5, 10, -10, -0.5, -10, 10, -0.5, -10, -10, 0.5, -10, -10, -0.5)
 
 [node name="Main" type="Node3D"]
 
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61894, 1.36835, 0.47525)
-health = ExtResource("2_0xm2m")
+health = SubResource("Resource_h2yge")
 
-[node name="World" type="StaticBody3D" parent="."]
+[node name="World" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
 mesh = SubResource("BoxMesh_0xm2m")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World"]
-shape = SubResource("ConcavePolygonShape3D_h2yge")
+[node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_0xm2m")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.28249, -10.5851)
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_h2yge")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.920743, 0.390169, 0, -0.390169, 0.920743, 0, 10.9056, 6.31421)
+light_energy = 9.404
+spot_range = 29.0888
+spot_angle = 29.9303

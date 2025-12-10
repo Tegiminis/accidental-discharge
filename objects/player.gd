@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var health : Resource
+@export var weapon : PackedScene
 
 @onready var camera : Node3D = $cam_pivot
 var smooth_animation_input : Vector2 
@@ -10,19 +11,11 @@ var lookangle_min : float = -90.0
 var lookangle_max : float = 90.0
 var look_sensitivity : float = 10.0
 
-var slomoing : bool = false
-var slomo : float = 10.0
-@export var slomo_max : float = 10.0
-@export var kick_strength : float = 5.0
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-@export var weapon_inventory : Array[Node]
-@export var active_weapon : int = 0
 
 func _init():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -67,6 +60,13 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	if Input.is_action_just_pressed("throw"):
+		var look_vector = -camera.get_global_transform().basis.z 
+		var new_wep : RigidBody3D = weapon.instantiate()
+		get_tree().get_root().add_child(new_wep)
+		new_wep.global_position = camera.global_position
+		new_wep.apply_impulse(look_vector * 10)
 	
 	# camera looking
 	if mouse_delta:

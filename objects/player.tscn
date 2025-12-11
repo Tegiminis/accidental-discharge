@@ -22,10 +22,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92733, -0.205015)
 rotation_edit_mode = 2
 
 [node name="held_weapon" type="Node3D" parent="cam_pivot"]
-transform = Transform3D(0.7518523, 0.19010748, 0.63133, 0.06532422, 0.93134046, -0.35824203, -0.65608764, 0.3105861, 0.6878118, 0.35087067, -0.60721135, -0.37030083)
+transform = Transform3D(0.7518523, 0.19010748, 0.63133, 0.06532422, 0.93134046, -0.35824203, -0.65608764, 0.3105861, 0.6878118, 0.35087067, -0.46173477, -0.5597048)
 
 [node name="Weapon" parent="cam_pivot/held_weapon" instance=ExtResource("3_nmc1l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14277571, 0, -0.18436414)
 freeze = true
 
 [node name="Camera3D" type="Camera3D" parent="cam_pivot"]

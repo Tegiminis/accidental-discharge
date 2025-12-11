@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	if can_discharge:
 		var collision = move_and_collide(linear_velocity*delta)
 		if collision:
+			pickup_collider.disabled = false
 			# collision values
 			var norm = collision.get_normal()
 			var pos = collision.get_position()
@@ -29,15 +30,18 @@ func _physics_process(delta: float) -> void:
 			discharge.look_at(global_norm)
 			discharge.damage = damage
 			can_discharge = false
-			pickup_collider.disabled = false
 
 func _on_pickup_area_body_entered(body: Node3D) -> void:
-	for collider in colliders:
-		collider.disabled = true
 	freeze = true
 	linear_velocity = Vector3.ZERO
 	var _body : Player = body
-	self.reparent(_body.held_weapon)
+	#self.reparent(_body.held_weapon)
 	global_position = _body.held_weapon.global_position
 	global_rotation = _body.held_weapon.global_rotation
 	can_discharge = true
+	call_deferred("reparent", _body.held_weapon)
+	disable_colliders()
+
+func disable_colliders():
+	for collider in colliders:
+		collider.disabled = true

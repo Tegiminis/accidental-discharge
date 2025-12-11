@@ -6,7 +6,7 @@ var damage = 0
 
 func _ready() -> void:
 	pass
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var bodies = get_overlapping_bodies()
 	if not debug_persist:
 		queue_free()

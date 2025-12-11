@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Accidental Discharge"
-run/main_scene="uid://vbhnu0dupkfo"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="uid://bmpta70g0xxmd"
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+player="*res://objects/player.tscn"
 
 [input]
 
@@ -55,3 +59,7 @@ throw={
 3d_physics/layer_3="Enemy"
 3d_physics/layer_4="Thrown"
 3d_physics/layer_5="Discharge"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"

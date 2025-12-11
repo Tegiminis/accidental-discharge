@@ -1,9 +1,13 @@
 extends CharacterBody3D
+class_name Player
+
+signal player_position_update(Vector3)
 
 @export var health : Resource
 @export var weapon : PackedScene
 
 @onready var camera : Node3D = $cam_pivot
+@onready var held_weapon : Node3D = $cam_pivot/held_weapon
 var smooth_animation_input : Vector2 
 
 var mouse_delta : Vector2 = Vector2()
@@ -12,7 +16,7 @@ var lookangle_max : float = 90.0
 var look_sensitivity : float = 10.0
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 14.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -26,9 +30,6 @@ func _input(event):
 
 func _ready():
 	health._ready()
-
-func _process(delta):
-	pass
 
 func _physics_process(delta):
 	velocity.x = 0
@@ -50,6 +51,7 @@ func _physics_process(delta):
 
 	# move the player
 	move_and_slide()
+	player_position_update.emit(global_position)
 	
 	# apply gravity again (midpoint method)
 	velocity.y -= gravity * delta / 2
@@ -63,10 +65,15 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("throw"):
 		var look_vector = -camera.get_global_transform().basis.z 
-		var new_wep : RigidBody3D = weapon.instantiate()
-		get_tree().get_root().add_child(new_wep)
-		new_wep.global_position = camera.global_position
-		new_wep.apply_impulse(look_vector * 10)
+		if held_weapon.get_children():
+			var new_wep : Weapon = held_weapon.get_child(0)
+			new_wep.reparent(get_tree().get_root())
+			new_wep.global_position = camera.global_position
+			new_wep.global_rotation = Vector3(randfn(0, 2),randfn(0, 2),randfn(0, 2))
+			new_wep.freeze = false
+			new_wep.apply_impulse(look_vector * 10)
+			new_wep.apply_torque(Vector3(randfn(2, 2)*5,randfn(2, 2)*5,randfn(2, 2)*5))
+			new_wep.enable_colliders(new_wep.world_colliders)
 	
 	# camera looking
 	if mouse_delta:

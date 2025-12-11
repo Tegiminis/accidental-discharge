@@ -1,18 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://vbhnu0dupkfo"]
-
-[ext_resource type="PackedScene" uid="uid://bgqffqcrj76oa" path="res://objects/player.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://q2tw1cxc0enj" path="res://components/health/component_health.gd" id="2_0xm2m"]
-
-[sub_resource type="Resource" id="Resource_h2yge"]
-resource_local_to_scene = true
-script = ExtResource("2_0xm2m")
-health_max = 100
-armor_max = 20
-resistance = 50
-super_armor = true
-invulnerable = false
-killable = true
-crit_mult = 2.0
+[gd_scene load_steps=6 format=3 uid="uid://vbhnu0dupkfo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
 size = Vector3(40, 0.2, 40)
@@ -29,10 +15,6 @@ points = PackedVector3Array(10, 10, 0.5, 10, 10, -0.5, -10, 10, 0.5, 10, -10, 0.
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
 
 [node name="Main" type="Node3D"]
-
-[node name="player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61894, 1.36835, 0.47525)
-health = SubResource("Resource_h2yge")
 
 [node name="World" type="Node3D" parent="."]
 

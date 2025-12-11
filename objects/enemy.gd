@@ -14,7 +14,6 @@ func _ready():
 	# and the navigation layout.
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.5
-
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
 

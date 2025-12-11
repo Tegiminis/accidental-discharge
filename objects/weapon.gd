@@ -15,8 +15,7 @@ func _physics_process(delta: float) -> void:
 		if collision:
 			var norm = collision.get_normal()
 			var pos = collision.get_position()
-			print(norm)
-			# create discharge scene and rotate it to collision normal
+		
 			var discharge = on_hit.instantiate()
 			get_tree().get_root().add_child(discharge)
 			discharge.position = pos

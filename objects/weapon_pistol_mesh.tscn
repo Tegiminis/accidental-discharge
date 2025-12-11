@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c2hhly3dubcli"]
+[gd_scene load_steps=11 format=4 uid="uid://beepm60avsciv"]
 
 [ext_resource type="Texture2D" uid="uid://nuljhmjpxtbb" path="res://assets/textures/trim-1-test.png" id="1_xb5en"]
 [ext_resource type="Texture2D" uid="uid://blc63tec44ax1" path="res://assets/textures/trim-1-test Roughness.png" id="2_eva2g"]

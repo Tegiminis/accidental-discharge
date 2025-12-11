@@ -33,6 +33,7 @@ func _physics_process(delta: float) -> void:
 func _on_pickup_area_body_entered(body: Node3D) -> void:
 	pickup_collider.disabled = true
 	freeze = true
+	linear_velocity = Vector3.ZERO
 	var _body : Player = body
 	self.reparent(_body.held_weapon)
 	global_position = _body.held_weapon.global_position

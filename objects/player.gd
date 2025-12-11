@@ -70,6 +70,7 @@ func _physics_process(delta):
 			new_wep.freeze = false
 			new_wep.apply_impulse(look_vector * 10)
 			new_wep.apply_torque(Vector3(randfn(2, 2)*5,randfn(2, 2)*5,randfn(2, 2)*5))
+			new_wep.world_collider.disabled = false
 	
 	# camera looking
 	if mouse_delta:

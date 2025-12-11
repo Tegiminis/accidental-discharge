@@ -7,6 +7,7 @@ class_name Weapon
 @onready var weapon_mesh : MeshInstance3D = $pistol_mesh
 @onready var world_collider : CollisionShape3D = $CollisionShape3D
 @onready var pickup_collider : CollisionShape3D = $PickupArea/CollisionShape3D
+@onready var colliders : Array[CollisionShape3D] = [$CollisionShape3D, $PickupArea/CollisionShape3D]
 
 var can_discharge : bool = true
 
@@ -31,7 +32,8 @@ func _physics_process(delta: float) -> void:
 			pickup_collider.disabled = false
 
 func _on_pickup_area_body_entered(body: Node3D) -> void:
-	pickup_collider.disabled = true
+	for collider in colliders:
+		collider.disabled = true
 	freeze = true
 	linear_velocity = Vector3.ZERO
 	var _body : Player = body

@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://wmvmw7104fgu"]
+[gd_scene load_steps=7 format=3 uid="uid://wmvmw7104fgu"]
 
 [ext_resource type="Script" uid="uid://cbccjiy78fpmw" path="res://objects/weapon.gd" id="1_ksv7g"]
 [ext_resource type="PackedScene" uid="uid://bqwbt3o2bgrcn" path="res://objects/discharge.tscn" id="2_6dv0v"]
 [ext_resource type="PackedScene" uid="uid://beepm60avsciv" path="res://objects/weapon_pistol_mesh.tscn" id="3_ronfr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_py1eh"]
-size = Vector3(0.15893555, 0.43920898, 0.7949219)
+size = Vector3(0.15893555, 0.20355225, 0.6611328)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ronfr"]
+size = Vector3(0.16064453, 0.20410156, 0.3496399)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ronfr"]
 
@@ -19,8 +22,13 @@ on_hit = ExtResource("2_6dv0v")
 [node name="pistol_mesh" parent="." instance=ExtResource("3_ronfr")]
 transform = Transform3D(-9.110551e-09, -7.6105815e-09, 0.08705491, 0, -0.08705491, -7.6105815e-09, 0.20842512, -3.326691e-16, 3.8052907e-09, 0, 0.104873806, -0.18352914)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="WorldCollision1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10568237, -0.06689453)
 shape = SubResource("BoxShape3D_py1eh")
+
+[node name="WorldCollision2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.47082716, -0.88222545, 0, 0.88222545, 0.47082716, -0.0007324219, -0.01933533, 0.22585706)
+shape = SubResource("BoxShape3D_ronfr")
 
 [node name="PickupArea" type="Area3D" parent="."]
 collision_layer = 8

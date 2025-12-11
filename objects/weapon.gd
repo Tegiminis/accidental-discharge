@@ -5,9 +5,10 @@ class_name Weapon
 @export var damage : int = 5
 
 @onready var weapon_mesh : MeshInstance3D = $pistol_mesh
-@onready var world_collider : CollisionShape3D = $CollisionShape3D
+#@onready var world_collider : CollisionShape3D = $CollisionShape3D
+@onready var world_colliders : Array[CollisionShape3D] = [$WorldCollision1, $WorldCollision2]
 @onready var pickup_collider : CollisionShape3D = $PickupArea/CollisionShape3D
-@onready var colliders : Array[CollisionShape3D] = [$CollisionShape3D, $PickupArea/CollisionShape3D]
+@onready var colliders : Array[CollisionShape3D] = [$WorldCollision1, $WorldCollision2, $PickupArea/CollisionShape3D]
 
 var can_discharge : bool = true
 
@@ -40,8 +41,11 @@ func _on_pickup_area_body_entered(body: Node3D) -> void:
 	global_rotation = _body.held_weapon.global_rotation
 	can_discharge = true
 	call_deferred("reparent", _body.held_weapon)
-	disable_colliders()
+	disable_colliders(colliders)
 
-func disable_colliders():
-	for collider in colliders:
+func disable_colliders(nodes:Array):
+	for collider in nodes:
 		collider.disabled = true
+func enable_colliders(nodes:Array):
+	for collider in nodes:
+		collider.disabled = false

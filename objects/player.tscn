@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgqffqcrj76oa"]
+[gd_scene load_steps=6 format=3 uid="uid://bgqffqcrj76oa"]
 
 [ext_resource type="Script" uid="uid://ptuk2ly2oo7j" path="res://objects/player.gd" id="1_l1qma"]
 [ext_resource type="Resource" uid="uid://byrpoi2rlxbyj" path="res://objects/player_health.tres" id="2_uxov2"]
 [ext_resource type="PackedScene" uid="uid://wmvmw7104fgu" path="res://objects/weapon.tscn" id="3_nmc1l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kl5tv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uxov2"]
+bounce = 0.4
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 2
@@ -25,7 +28,9 @@ rotation_edit_mode = 2
 transform = Transform3D(0.7518523, 0.19010748, 0.63133, 0.06532422, 0.93134046, -0.35824203, -0.65608764, 0.3105861, 0.6878118, 0.35087067, -0.46173477, -0.5597048)
 
 [node name="Weapon" parent="cam_pivot/held_weapon" instance=ExtResource("3_nmc1l")]
+physics_material_override = SubResource("PhysicsMaterial_uxov2")
 freeze = true
+linear_damp = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="cam_pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0982218, 0.0735781)

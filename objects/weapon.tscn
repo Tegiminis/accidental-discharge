@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://wmvmw7104fgu"]
+[gd_scene load_steps=6 format=3 uid="uid://wmvmw7104fgu"]
 
 [ext_resource type="Script" uid="uid://cbccjiy78fpmw" path="res://objects/weapon.gd" id="1_ksv7g"]
 [ext_resource type="PackedScene" uid="uid://bqwbt3o2bgrcn" path="res://objects/discharge.tscn" id="2_6dv0v"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_py1eh"]
 size = Vector3(0.15893555, 0.43920898, 0.7949219)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ronfr"]
 
 [node name="Weapon" type="RigidBody3D"]
 collision_layer = 8
@@ -20,4 +22,12 @@ transform = Transform3D(-9.110551e-09, -7.6105815e-09, 0.08705491, 0, -0.0870549
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_py1eh")
 
+[node name="PickupArea" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
+shape = SubResource("SphereShape3D_ronfr")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

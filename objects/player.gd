@@ -1,9 +1,11 @@
 extends CharacterBody3D
+class_name Player
 
 @export var health : Resource
 @export var weapon : PackedScene
 
 @onready var camera : Node3D = $cam_pivot
+@onready var held_weapon : Node3D = $cam_pivot/held_weapon
 var smooth_animation_input : Vector2 
 
 var mouse_delta : Vector2 = Vector2()
@@ -26,9 +28,6 @@ func _input(event):
 
 func _ready():
 	health._ready()
-
-func _process(delta):
-	pass
 
 func _physics_process(delta):
 	velocity.x = 0
@@ -63,11 +62,14 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("throw"):
 		var look_vector = -camera.get_global_transform().basis.z 
-		var new_wep : RigidBody3D = weapon.instantiate()
-		get_tree().get_root().add_child(new_wep)
-		new_wep.global_position = camera.global_position
-		new_wep.global_rotation = Vector3(randfn(0, 2),randfn(0, 2),randfn(0, 2))
-		new_wep.apply_impulse(look_vector * 10)
+		if held_weapon.get_children():
+			var new_wep : Weapon = held_weapon.get_child(0)
+			new_wep.reparent(get_tree().get_root())
+			new_wep.global_position = camera.global_position
+			new_wep.global_rotation = Vector3(randfn(0, 2),randfn(0, 2),randfn(0, 2))
+			new_wep.freeze = false
+			new_wep.apply_impulse(look_vector * 10)
+			new_wep.apply_torque(Vector3(randfn(2, 2)*5,randfn(2, 2)*5,randfn(2, 2)*5))
 	
 	# camera looking
 	if mouse_delta:

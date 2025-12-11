@@ -66,6 +66,7 @@ func _physics_process(delta):
 		var new_wep : RigidBody3D = weapon.instantiate()
 		get_tree().get_root().add_child(new_wep)
 		new_wep.global_position = camera.global_position
+		new_wep.global_rotation = Vector3(randfn(0, 2),randfn(0, 2),randfn(0, 2))
 		new_wep.apply_impulse(look_vector * 10)
 	
 	# camera looking

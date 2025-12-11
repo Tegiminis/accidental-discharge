@@ -15,9 +15,11 @@ dest_files=["res://.godot/imported/Level 1.blend-9187ebe5f24f53c5f472017db450d03
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
@@ -32,6 +34,9 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
 _subresources={
 "materials": {
 "Material": {
@@ -57,11 +62,31 @@ _subresources={
 },
 "nodes": {
 "PATH:Arena floor": {
-"generate/navmesh": 1,
 "generate/physics": true,
-"physics/layer": 2,
 "physics/mask": 0,
 "physics/shape_type": 1
+},
+"PATH:Arena floor navmesh": {
+"generate/navmesh": 2
+},
+"PATH:Funnel": {
+"generate/physics": true,
+"physics/mask": 0,
+"physics/shape_type": 2
+},
+"PATH:Pillar": {
+"generate/physics": true,
+"physics/mask": 0,
+"physics/shape_type": 1
+},
+"PATH:Platform": {
+"generate/physics": true,
+"physics/shape_type": 1
+},
+"PATH:Upper level": {
+"generate/physics": true,
+"physics/mask": 0,
+"physics/shape_type": 2
 }
 }
 }
@@ -83,3 +108,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
+gltf/naming_version=0

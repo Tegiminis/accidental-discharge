@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+signal player_position_update(Vector3)
+
 @export var health : Resource
 @export var weapon : PackedScene
 
@@ -14,7 +16,7 @@ var lookangle_max : float = 90.0
 var look_sensitivity : float = 10.0
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 14.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -49,6 +51,7 @@ func _physics_process(delta):
 
 	# move the player
 	move_and_slide()
+	player_position_update.emit(global_position)
 	
 	# apply gravity again (midpoint method)
 	velocity.y -= gravity * delta / 2

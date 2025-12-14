@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmpta70g0xxmd"]
+[gd_scene load_steps=5 format=3 uid="uid://bmpta70g0xxmd"]
 
 [ext_resource type="PackedScene" uid="uid://b6bbnuudc2hd8" path="res://assets/Level 1.blend" id="1_jcjpg"]
-[ext_resource type="PackedScene" uid="uid://dpwy43sqpm2b5" path="res://objects/enemy.tscn" id="2_qd8n6"]
+[ext_resource type="PackedScene" uid="uid://crgfooi3mkq2t" path="res://objects/enemy.tscn" id="2_qd8n6"]
+[ext_resource type="PackedScene" uid="uid://b1ytu8jkpe8u7" path="res://objects/spawner.tscn" id="3_nnco5"]
 
 [sub_resource type="Environment" id="Environment_qd8n6"]
 
@@ -14,6 +15,18 @@ environment = SubResource("Environment_qd8n6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.871571, 0, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("2_qd8n6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.401519, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.401519, 1.9272285, 0)
+
+[node name="Spawner" parent="." instance=ExtResource("3_nnco5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4500346, 2.3215349, 6.442873)
+
+[node name="Spawner2" parent="." instance=ExtResource("3_nnco5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4500346, 2.3215349, -8.646335)
+
+[node name="Spawner3" parent="." instance=ExtResource("3_nnco5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.18547, 2.3215349, -8.646335)
+
+[node name="Spawner4" parent="." instance=ExtResource("3_nnco5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.18547, 2.3215349, 14.417998)
 
 [editable path="Level 1"]

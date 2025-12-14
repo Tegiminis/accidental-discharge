@@ -15,7 +15,7 @@ var lookangle_min : float = -90.0
 var lookangle_max : float = 90.0
 var look_sensitivity : float = 10.0
 
-const SPEED = 5.0
+@export var SPEED = 7.0
 const JUMP_VELOCITY = 14.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

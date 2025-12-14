@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1ytu8jkpe8u7"]
+
+[ext_resource type="Script" uid="uid://81t617vrpufd" path="res://objects/spawner.gd" id="1_uk7qp"]
+[ext_resource type="PackedScene" uid="uid://crgfooi3mkq2t" path="res://objects/enemy.tscn" id="2_unxpu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uk7qp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_unxpu"]
+material = SubResource("StandardMaterial3D_uk7qp")
+
+[node name="Spawner" type="Node3D"]
+script = ExtResource("1_uk7qp")
+to_spawn = ExtResource("2_unxpu")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_unxpu")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

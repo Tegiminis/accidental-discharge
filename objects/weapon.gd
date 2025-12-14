@@ -5,6 +5,7 @@ class_name Weapon
 @export var damage : int = 5
 
 @onready var weapon_mesh : MeshInstance3D = $pistol_mesh
+@onready var anims : AnimationPlayer = $AnimationPlayer
 #@onready var world_collider : CollisionShape3D = $CollisionShape3D
 @onready var world_colliders : Array[CollisionShape3D] = [$WorldCollision1, $WorldCollision2]
 @onready var pickup_collider : CollisionShape3D = $PickupArea/CollisionShape3D
@@ -30,6 +31,7 @@ func _physics_process(delta: float) -> void:
 			var global_norm = discharge.to_global(norm)
 			discharge.look_at(global_norm)
 			discharge.damage = damage
+			anims.play("fire")
 			can_discharge = false
 
 func _on_pickup_area_body_entered(body: Node3D) -> void:
